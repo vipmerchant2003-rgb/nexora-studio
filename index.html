@@ -4,234 +4,359 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexora Studio | Professional Digital Services</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Sharp elegant & modern fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
+    <!-- الخطوط الاحترافية -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- إعدادات ألوان Tailwind (الأزرق والبنفسجي) -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        heading: ['Cinzel', 'serif'], // Sharp elegant font
-                        body: ['Rajdhani', 'sans-serif'], // Modern tech font
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Inter', 'sans-serif'],
                     },
                     colors: {
+                        darkBg: '#050505',
+                        neonBlue: '#3b82f6',
                         neonPurple: '#a855f7',
-                        darkBg: '#0a0a0a',
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        glow: {
-                            'from': { boxShadow: '0 0 10px #a855f7, 0 0 20px #a855f7' },
-                            'to': { boxShadow: '0 0 20px #a855f7, 0 0 30px #c084fc' },
-                        }
+                        cardBg: 'rgba(10, 10, 15, 0.8)',
                     }
                 }
             }
         }
     </script>
+    
+    <!-- أكواد CSS المخصصة لتأثيرات التشويش والنيون -->
     <style>
-        body { background-color: #050505; color: #ffffff; }
-        .glass-card { background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(10px); border: 1px solid #2a2a2a; }
-        .neon-text { text-shadow: 0 0 10px rgba(168, 85, 247, 0.8); }
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* تأثير النص المشع */
+        .neon-text {
+            background: linear-gradient(to right, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+        }
+
+        /* الأزرار المتدرجة */
+        .btn-gradient {
+            background: linear-gradient(135deg, #3b82f6, #a855f7);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gradient:hover {
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* إعدادات قسم الفيديو (الهيرو سكشن) */
+        .hero-video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            object-fit: cover;
+        }
+        
+        /* طبقة التشويش فوق الفيديو (Glitch Overlay) */
+        .glitch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* الشبكة الخلفية لباقي الموقع */
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+        }
+
+        /* الشريط العلوي الثابت */
+        nav {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
     </style>
 </head>
-<body class="font-body antialiased overflow-x-hidden selection:bg-purple-600 selection:text-white">
+<body class="bg-grid">
 
-    <!-- Hero Section with Small Animation -->
-    <header class="relative min-h-[60vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505]"></div>
+    <!-- 1. Navbar (الشريط العلوي) -->
+    <nav class="fixed w-full z-50 flex justify-between items-center p-5 px-8">
+        <div class="font-heading font-bold text-2xl tracking-widest flex items-center gap-2 cursor-pointer">
+            <span class="text-blue-500 text-shadow-md">NEXORA</span> <span class="text-gray-300 text-sm">STUDIO</span>
+        </div>
+        <a href="#contact" class="btn-gradient text-white px-6 py-2.5 rounded-full text-sm font-bold tracking-wide">
+            Start Your Project
+        </a>
+    </nav>
+    <!-- 2. Hero Section (قسم الفيديو مع الصوت والضبابية) -->
+    <header class="hero-video-container relative flex flex-col items-center justify-center text-center px-4 pt-20">
         
-        <div class="relative z-10 animate-float">
-            <h1 class="font-heading text-5xl md:text-7xl font-bold mb-4 tracking-wider text-white neon-text">
-                NEXORA <span class="text-neonPurple">STUDIO</span>
+        <video autoplay loop playsinline class="hero-video">
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+        
+        <div class="glitch-overlay backdrop-blur-[3px]"></div>
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-[#050505]/60 to-[#050505] z-[-1]"></div>
+
+        <div class="relative z-10 flex flex-col items-center mt-10 p-8 rounded-3xl backdrop-blur-md bg-black/20 border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+            
+            <div class="mb-6 px-6 py-2 border border-purple-500/40 bg-black/60 backdrop-blur-xl rounded-full text-xs font-bold text-blue-300 tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                <span class="text-neonPurple mr-2">●</span> SHOWREEL : Web • Anime • Logos • CVs
+            </div>
+            
+            <h1 class="font-heading text-6xl md:text-8xl lg:text-9xl font-bold mb-4 tracking-widest neon-text drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                NEXORA STUDIO
             </h1>
-            <p class="text-xl md:text-2xl text-gray-300 font-semibold mb-6 tracking-wide">
-                Fast & Professional Design <span class="text-neonPurple px-2">|</span> Quick Delivery
+            
+            <p class="font-body text-xl md:text-2xl text-white mb-6 font-semibold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                Professional Digital Services <span class="text-neonPurple font-bold mx-2">|</span> Fast Delivery
             </p>
-            <a href="#contact" class="inline-block px-8 py-3 bg-transparent border-2 border-neonPurple text-neonPurple font-bold text-lg uppercase tracking-widest hover:bg-neonPurple hover:text-white hover:animate-glow transition-all duration-300">
-                Start Your Project
-            </a>
+            
+            <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto mb-12 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                Websites, AI anime videos, stand-out logos and recruiter-ready CVs — crafted with precision and delivered fast. Most projects ship within 24-72 hours.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="#contact" class="btn-gradient text-white px-10 py-4 rounded-full font-bold text-lg shadow-[0_0_20px_rgba(168,85,247,0.4)] flex items-center justify-center gap-2">
+                    Start Your Project 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+                <a href="#services" class="bg-black/50 backdrop-blur-md border border-gray-500 hover:border-neonPurple text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:bg-purple-900/30">
+                    See our services
+                </a>
+            </div>
         </div>
     </header>
-
-    <!-- Services Section -->
-    <section class="max-w-7xl mx-auto py-20 px-4">
-        <h2 class="font-heading text-4xl text-center mb-16 text-white neon-text">Our Services</h2>
+    <!-- 3. Services Section (قسم الخدمات) -->
+    <section id="services" class="max-w-7xl mx-auto py-24 px-4 relative z-10">
+        <div class="text-center mb-16">
+            <p class="text-xs text-neonPurple font-bold tracking-[0.3em] uppercase mb-3">What We Do</p>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 uppercase">Four Services. <span class="text-gray-400">Zero Compromise.</span></h2>
+            <p class="text-gray-400 text-sm max-w-2xl mx-auto">Transparent pricing, sharp execution and delivery timelines you can actually plan around.</p>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <!-- Web Design -->
-            <div class="glass-card rounded-xl overflow-hidden group hover:border-neonPurple transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                <div class="h-48 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop" alt="HTML Code" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-10 transition-all"></div>
+            <div class="glass-card rounded-2xl overflow-hidden group hover:border-neonBlue transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] bg-black/60 border border-gray-800 backdrop-blur-sm">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop" alt="Web Design" class="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-black/80 backdrop-blur-md text-white font-bold px-4 py-1.5 rounded-full text-sm border border-white/10">$150</span>
                 </div>
-                <div class="p-6 text-center">
-                    <h3 class="font-heading text-xl font-bold mb-2 text-white">Web Design</h3>
-                    <p class="text-gray-400 text-sm mb-4">Professional, fast, and fully responsive websites built with modern HTML/CSS tailored to your vision.</p>
-                    <p class="text-2xl font-bold text-neonPurple">$150</p>
-                </div>
-            </div>
-
-            <!-- AI Anime Video -->
-            <div class="glass-card rounded-xl overflow-hidden group hover:border-neonPurple transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                <div class="h-48 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=800&auto=format&fit=crop" alt="Anime AI" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-purple-900 bg-opacity-40 group-hover:bg-opacity-10 transition-all"></div>
-                </div>
-                <div class="p-6 text-center">
-                    <h3 class="font-heading text-xl font-bold mb-2 text-white">AI Anime Video</h3>
-                    <p class="text-gray-400 text-sm mb-4">High-quality 2D anime animation (Demon Slayer style) blending art with advanced AI environments.</p>
-                    <p class="text-2xl font-bold text-neonPurple">$5 <span class="text-sm text-gray-500">/ min</span></p>
+                <div class="p-6 relative">
+                    <h3 class="font-heading text-2xl font-bold mb-3 text-white">Web Design</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Professional, fast, and fully responsive websites built to represent your business perfectly.</p>
+                    <a href="#contact" class="inline-flex items-center text-neonBlue text-sm font-bold hover:text-blue-300 transition-colors">
+                        Order this service <span class="ml-2">→</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Logo Design -->
-            <div class="glass-card rounded-xl overflow-hidden group hover:border-neonPurple transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                <div class="h-48 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Logos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-10 transition-all"></div>
+            <div class="glass-card rounded-2xl overflow-hidden group hover:border-neonPurple transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] bg-black/60 border border-gray-800 backdrop-blur-sm">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=800&auto=format&fit=crop" alt="AI Anime Video" class="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-black/80 backdrop-blur-md text-white font-bold px-4 py-1.5 rounded-full text-sm border border-white/10">$5 / min</span>
                 </div>
-                <div class="p-6 text-center">
-                    <h3 class="font-heading text-xl font-bold mb-2 text-white">Logo Design</h3>
-                    <p class="text-gray-400 text-sm mb-4">Unique, arranged, and professional logo designs to give your brand a striking visual identity.</p>
-                    <p class="text-2xl font-bold text-neonPurple">$15</p>
-                </div>
-            </div>
-
-            <!-- CV Writing -->
-            <div class="glass-card rounded-xl overflow-hidden group hover:border-neonPurple transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                <div class="h-48 overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&auto=format&fit=crop" alt="CV and Desk" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-10 transition-all"></div>
-                </div>
-                <div class="p-6 text-center">
-                    <h3 class="font-heading text-xl font-bold mb-2 text-white">CV Writing</h3>
-                    <p class="text-gray-400 text-sm mb-4">Professional resume formatting and writing to highlight your skills and land your dream job.</p>
-                    <p class="text-2xl font-bold text-neonPurple">$10</p>
+                <div class="p-6 relative">
+                    <h3 class="font-heading text-2xl font-bold mb-3 text-white">AI Anime Video</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Creative anime video production with cinematic quality using advanced AI tools.</p>
+                    <a href="#contact" class="inline-flex items-center text-neonPurple text-sm font-bold hover:text-purple-300 transition-colors">
+                        Order this service <span class="ml-2">→</span>
+                    </a>
                 </div>
             </div>
 
+            <div class="glass-card rounded-2xl overflow-hidden group hover:border-neonBlue transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] bg-black/60 border border-gray-800 backdrop-blur-sm">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Logo Design" class="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-black/80 backdrop-blur-md text-white font-bold px-4 py-1.5 rounded-full text-sm border border-white/10">$15</span>
+                </div>
+                <div class="p-6 relative">
+                    <h3 class="font-heading text-2xl font-bold mb-3 text-white">Logo Design</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Unique visual identity and striking logo designs to make your brand stand out.</p>
+                    <a href="#contact" class="inline-flex items-center text-neonBlue text-sm font-bold hover:text-blue-300 transition-colors">
+                        Order this service <span class="ml-2">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl overflow-hidden group hover:border-neonPurple transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] bg-black/60 border border-gray-800 backdrop-blur-sm">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&auto=format&fit=crop" alt="CV Writing" class="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+                    <span class="absolute top-4 right-4 bg-black/80 backdrop-blur-md text-white font-bold px-4 py-1.5 rounded-full text-sm border border-white/10">$10</span>
+                </div>
+                <div class="p-6 relative">
+                    <h3 class="font-heading text-2xl font-bold mb-3 text-white">CV Writing</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Professional resume crafting to highlight your skills and boost your job prospects.</p>
+                    <a href="#contact" class="inline-flex items-center text-neonPurple text-sm font-bold hover:text-purple-300 transition-colors">
+                        Order this service <span class="ml-2">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 4. Reviews Section (قسم التقييمات) -->
+    <section class="max-w-7xl mx-auto py-24 px-4 relative z-10">
+        <p class="text-xs text-neonBlue font-bold tracking-[0.3em] uppercase mb-3 text-center">Client Reviews</p>
+        <h2 class="font-heading text-3xl md:text-4xl text-center mb-12 uppercase font-bold text-white">Rated by the people we've worked with</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Review 1 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">4.8</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Roa Mohamed Essam</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">CV Writing</p>
+            </div>
+            <!-- Review 2 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">4.5</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Amir Mohamed</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">AI Anime Video</p>
+            </div>
+            <!-- Review 3 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">5.0</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Bashir Adel</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">AI Anime Video</p>
+            </div>
+            <!-- Review 4 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">4.9</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Omer Mohamed</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">CV Writing</p>
+            </div>
+            <!-- Review 5 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">4.7</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Shaheen Mohamed</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">Web Design</p>
+            </div>
+            <!-- Review 6 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">5.0</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Amin Nur Eldin</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">AI Anime Video</p>
+            </div>
+            <!-- Review 7 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">4.9</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Rayan Essam</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">CV Writing</p>
+            </div>
+            <!-- Review 8 -->
+            <div class="glass-card p-6 rounded-xl border border-gray-800 hover:border-neonPurple transition-all bg-black/40 backdrop-blur-sm">
+                <div class="flex text-neonPurple text-sm mb-3">★★★★★</div>
+                <div class="flex items-baseline gap-2 mb-1">
+                    <h4 class="font-bold text-xl text-white">4.6</h4>
+                    <span class="text-gray-500 text-sm">/ 5.0</span>
+                </div>
+                <p class="text-gray-300 text-sm mb-1">Moataz Ali</p>
+                <p class="text-neonBlue text-xs uppercase tracking-wider mt-2">Logo Design</p>
+            </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="bg-[#0a0a0a] py-20 border-t border-b border-[#1a1a1a]">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="font-heading text-3xl text-center mb-12 text-white">Client Reviews</h2>
+    <!-- 5. Contact Section (قسم التواصل) -->
+    <section id="contact" class="border-t border-white/5 bg-[#0a0a0f] py-24 px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 text-white uppercase drop-shadow-md">Ready to start your project?</h2>
+            <p class="text-gray-400 mb-12 text-lg">Tell us what you need and get a price plus a delivery date — usually the same day.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Review 1 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Roa Mohamed Essam</h4>
-                        <span class="text-yellow-400 font-bold">★ 4.8</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">CV Writing</p>
-                </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/249115213883" target="_blank" class="btn-gradient text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:scale-105 transition-transform">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current"><path d="M12.031 21c-1.637 0-3.238-.426-4.654-1.233l-.334-.191-3.46.907.923-3.375-.21-.334A9.919 9.919 0 0 1 3 12.031c0-5.503 4.48-9.983 9.986-9.983 2.668 0 5.176 1.04 7.062 2.928A9.923 9.923 0 0 1 23 12.031c0 5.503-4.48 9.983-9.986 9.983m0-21C5.394 0 0 5.394 0 12.031c0 2.128.555 4.204 1.611 6.033L.108 23.892l5.964-1.564A11.968 11.968 0 0 0 12.031 24c6.627 0 12.019-5.392 12.019-12.019C24 5.385 18.627 0 12.031 0m6.568 16.586c-.274-.757-1.614-1.391-2.222-1.533-.608-.142-1.05-.213-1.492.45-.442.663-1.688 2.059-2.068 2.482-.38.423-.76.474-1.423.142-.663-.332-2.146-.79-4.088-2.525-1.512-1.35-2.531-2.834-3.539-.303-.523-.032-.806.299-1.137.297-.297.663-.77.994-1.156.332-.385.442-.644.663-1.074.221-.43.111-.806-.055-1.137-.166-.331-1.492-3.6-2.044-4.928-.538-1.293-1.085-1.118-1.492-1.137-.38-.019-.816-.019-1.258-.019-.442 0-1.161.166-1.769.833-.608.663-2.322 2.271-2.322 5.535 0 3.264 2.377 6.417 2.709 6.861.332.445 4.678 7.14 11.328 10.013 1.583.684 2.818 1.093 3.784 1.399 1.589.505 3.037.433 4.182.262 1.28-.19 3.925-1.603 4.478-3.153.552-1.55.552-2.881.386-3.161-.166-.28-.608-.445-1.271-.777"/></svg>
+                    Chat on WhatsApp
+                </a>
                 
-                <!-- Review 2 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Amir Mohamed</h4>
-                        <span class="text-yellow-400 font-bold">★ 4.5</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">Anime Video</p>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Bashir Adel</h4>
-                        <span class="text-yellow-400 font-bold">★ 5.0</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">Anime Video</p>
-                </div>
-
-                <!-- Review 4 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Omer Mohamed</h4>
-                        <span class="text-yellow-400 font-bold">★ 4.9</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">CV Writing</p>
-                </div>
-
-                <!-- Review 5 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Shaheen Mohamed</h4>
-                        <span class="text-yellow-400 font-bold">★ 4.7</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">Web Design</p>
-                </div>
-
-                <!-- Review 6 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Amin Nur Eldin</h4>
-                        <span class="text-yellow-400 font-bold">★ 5.0</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">Anime Video</p>
-                </div>
-
-                <!-- Review 7 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Rayan Essam</h4>
-                        <span class="text-yellow-400 font-bold">★ 4.9</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">CV Writing</p>
-                </div>
-
-                <!-- Review 8 -->
-                <div class="glass-card p-5 rounded-lg border-l-4 border-l-neonPurple">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="font-bold text-white">Moataz Ali</h4>
-                        <span class="text-yellow-400 font-bold">★ 4.6</span>
-                    </div>
-                    <p class="text-xs text-neonPurple mb-2">Logo Design</p>
-                </div>
+                <!-- Email Button -->
+                <a href="mailto:nar82282@gmail.com" class="bg-black/50 backdrop-blur-md border border-gray-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:border-neonPurple hover:bg-purple-900/20 transition-all flex items-center justify-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    Email Us
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <footer id="contact" class="py-20 px-4 text-center">
-        <h2 class="font-heading text-3xl mb-8 text-white">Ready to Start?</h2>
-        <p class="text-gray-400 mb-10 max-w-xl mx-auto">Get in touch today to discuss your next project. Fast delivery and professional quality guaranteed.</p>
-        
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <!-- Email -->
-            <a href="mailto:nar82282@gmail.com" class="flex items-center gap-3 px-8 py-4 glass-card hover:border-neonPurple hover:text-neonPurple transition-colors rounded-full w-full sm:w-auto justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                nar82282@gmail.com
-            </a>
-            
-            <!-- WhatsApp -->
-            <a href="https://wa.me/249115213883" target="_blank" class="flex items-center gap-3 px-8 py-4 bg-neonPurple text-white hover:bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all rounded-full w-full sm:w-auto justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.031 21c-1.637 0-3.238-.426-4.654-1.233l-.334-.191-3.46.907.923-3.375-.21-.334A9.919 9.919 0 0 1 3 12.031c0-5.503 4.48-9.983 9.986-9.983 2.668 0 5.176 1.04 7.062 2.928A9.923 9.923 0 0 1 23 12.031c0 5.503-4.48 9.983-9.986 9.983m0-21C5.394 0 0 5.394 0 12.031c0 2.128.555 4.204 1.611 6.033L.108 23.892l5.964-1.564A11.968 11.968 0 0 0 12.031 24c6.627 0 12.019-5.392 12.019-12.019C24 5.385 18.627 0 12.031 0m6.568 16.586c-.274-.757-1.614-1.391-2.222-1.533-.608-.142-1.05-.213-1.492.45-.442.663-1.688 2.059-2.068 2.482-.38.423-.76.474-1.423.142-.663-.332-2.146-.79-4.088-2.525-1.512-1.35-2.531-3.017-2.834-3.539-.303-.523-.032-.806.299-1.137.297-.297.663-.77.994-1.156.332-.385.442-.644.663-1.074.221-.43.111-.806-.055-1.137-.166-.331-1.492-3.6-2.044-4.928-.538-1.293-1.085-1.118-1.492-1.137-.38-.019-.816-.019-1.258-.019-.442 0-1.161.166-1.769.833-.608.663-2.322 2.271-2.322 5.535 0 3.264 2.377 6.417 2.709 6.861.332.445 4.678 7.14 11.328 10.013 1.583.684 2.818 1.093 3.784 1.399 1.589.505 3.037.433 4.182.262 1.28-.19 3.925-1.603 4.478-3.153.552-1.55.552-2.881.386-3.161-.166-.28-.608-.445-1.271-.777"/>
-                </svg>
-                WhatsApp Me
-            </a>
-        </div>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm relative z-10 bg-[#050505] border-t border-white/5">
+        <p>© 2026 Nexora Studio. All rights reserved.</p>
     </footer>
 
 </body>
 </html>
- 
