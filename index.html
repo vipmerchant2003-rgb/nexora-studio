@@ -3,53 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 11. SEO & Performance -->
     <meta name="description" content="Nexora Studio offers modern website design, creative logo design, AI anime video production, and professional CV design.">
     <meta name="google" content="notranslate">
     <title>Nexora Studio | Websites, Logo Design & AI Anime Videos</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        body: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { body: ['Inter', 'sans-serif'] },
                     colors: {
                         brandDark: '#050505',
-                        brandPurple: '#8b5cf6', // لون بنفسجي واضح وجذاب
+                        brandPurple: '#8b5cf6',
                         brandPurpleHover: '#7c3aed',
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
         body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
         .glass-card { background: rgba(15, 15, 20, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card:hover { border-color: rgba(139, 92, 246, 0.3); }
-        
-        /* تأثيرات بصرية خفيفة دون التأثير على السرعة */
         .purple-glow { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; }
-        
-        /* إخفاء سهم القوائم المنسدلة في الأسئلة الشائعة */
         details > summary::-webkit-details-marker { display: none; }
-        
-        /* زر الواتساب العائم */
         .float-wa { position: fixed; bottom: 20px; right: 20px; z-index: 100; animation: bounce 2s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(5,5,5,0.65) 0%, rgba(5,5,5,0.55) 50%, #050505 100%); }
+
+        @media (prefers-reduced-motion: reduce) { .float-wa { animation: none; } }
     </style>
 </head>
 <body class="relative font-body selection:bg-brandPurple selection:text-white">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 flex justify-between items-center p-4 md:px-10 bg-[#050505]/90 backdrop-blur-md border-b border-white/5">
-        <a href="#" class="font-bold text-xl tracking-widest flex items-center gap-2 transition hover:opacity-80">
-            NEXORA <span class="text-brandPurple text-xs uppercase tracking-widest">Studio</span>
+    <nav class="fixed w-full z-50 flex justify-between items-center px-4 py-4 md:px-10 bg-[#050505]/90 backdrop-blur-md border-b border-white/5">
+        <a href="#" class="font-extrabold text-2xl sm:text-3xl md:text-4xl leading-none tracking-[0.12em] flex items-baseline gap-2 transition hover:opacity-80">
+            NEXORA <span class="text-brandPurple text-sm sm:text-base md:text-lg font-bold uppercase tracking-[0.2em]">Studio</span>
         </a>
         <div class="hidden lg:flex gap-8 text-sm font-semibold text-gray-400">
             <a href="#services" class="hover:text-white transition-colors">Services</a>
@@ -58,41 +55,44 @@
             <a href="#reviews" class="hover:text-white transition-colors">Reviews</a>
             <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
         </div>
-        <a href="https://wa.me/249115213883?text=Hello%20Nexora%20Studio!%20I'm%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="bg-brandPurple hover:bg-brandPurpleHover text-white px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(139,92,246,0.3)]">
+        <a href="https://wa.me/249115213883?text=Hello%20Nexora%20Studio!%20I'm%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="bg-brandPurple hover:bg-brandPurpleHover text-white px-4 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all shadow-[0_0_15px_rgba(139,92,246,0.3)] whitespace-nowrap">
             Let's Talk
         </a>
     </nav>
 
-    <!-- 1. Hero Section -->
-    <header class="relative flex flex-col items-center justify-center text-center px-4 pt-32 pb-20 md:min-h-[85vh]">
-        <!-- مساحة لونية بنفسجية خفيفة في الخلفية -->
-        <div class="purple-glow top-1/4 left-1/2 -translate-x-1/2"></div>
-        
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden flex flex-col items-center justify-center text-center px-4 pt-36 pb-24 min-h-[90vh]">
+
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
         <div class="relative z-10 flex flex-col items-center max-w-4xl mx-auto w-full">
-            <div class="mb-6 px-4 py-1.5 border border-brandPurple/30 bg-brandPurple/5 rounded-full text-[10px] sm:text-xs font-bold text-brandPurple tracking-[0.2em] uppercase">
+            <div class="mb-6 px-4 py-1.5 border border-brandPurple/40 bg-brandPurple/10 rounded-full text-[10px] sm:text-xs font-bold text-brandPurple tracking-[0.2em] uppercase backdrop-blur-sm">
                 NEXORA STUDIO • DIGITAL CREATIVITY
             </div>
-            
+
             <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 text-white leading-tight tracking-tight">
                 Ideas Into <br class="hidden sm:block"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandPurple to-blue-400">Digital Experiences.</span>
             </h1>
-            
-            <p class="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed px-2">
+
+            <p class="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed px-2">
                 From professional websites and unique brand identities to cinematic AI anime videos and polished CVs, we turn your ideas into digital work that stands out.
             </p>
-            
+
             <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
                 <a href="https://wa.me/249115213883?text=Hello%20Nexora%20Studio!%20I'm%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="bg-brandPurple hover:bg-brandPurpleHover text-white px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all shadow-lg flex items-center justify-center">
                     Start Your Project
                 </a>
-                <a href="#portfolio" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center justify-center">
+                <a href="#portfolio" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all flex items-center justify-center backdrop-blur-sm">
                     Explore Our Work
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- 13. Why Choose Us -->
+    <!-- Why Choose Us -->
     <section class="max-w-7xl mx-auto py-16 px-4 border-t border-white/5">
         <div class="text-center mb-12">
             <p class="text-xs text-brandPurple font-bold tracking-[0.2em] uppercase mb-2">WHY NEXORA STUDIO?</p>
@@ -117,16 +117,15 @@
         </div>
     </section>
 
-    <!-- 2 & 6. Services & Pricing -->
+    <!-- Services & Pricing -->
     <section id="services" class="bg-[#08080a] py-24 px-4 border-t border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <p class="text-xs text-brandPurple font-bold tracking-[0.2em] uppercase mb-3">Our Expertise</p>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Clear Services. Transparent Pricing.</h2>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Service 1 -->
                 <div class="glass-card rounded-2xl p-6 flex flex-col h-full relative group">
                     <div class="text-brandPurple mb-4 font-bold text-xl">01</div>
                     <h3 class="text-xl font-bold text-white mb-2">Website Design</h3>
@@ -136,12 +135,9 @@
                         <p class="text-2xl font-bold text-white">$150</p>
                         <p class="text-[10px] text-gray-500 mt-1">*Up to 5 pages. Domain/Hosting not included.</p>
                     </div>
-                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20Website%20Design." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">
-                        Build My Website
-                    </a>
+                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20Website%20Design." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">Build My Website</a>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="glass-card rounded-2xl p-6 flex flex-col h-full relative group">
                     <div class="text-brandPurple mb-4 font-bold text-xl">02</div>
                     <h3 class="text-xl font-bold text-white mb-2">AI Anime Videos</h3>
@@ -151,12 +147,9 @@
                         <p class="text-2xl font-bold text-white">$5 <span class="text-sm text-gray-400 font-normal">/ minute</span></p>
                         <p class="text-[10px] text-gray-500 mt-1">*Timeline depends on project complexity.</p>
                     </div>
-                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20AI%20Anime%20Videos." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">
-                        Create My Video
-                    </a>
+                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20AI%20Anime%20Videos." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">Create My Video</a>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="glass-card rounded-2xl p-6 flex flex-col h-full relative group">
                     <div class="text-brandPurple mb-4 font-bold text-xl">03</div>
                     <h3 class="text-xl font-bold text-white mb-2">Logo Design</h3>
@@ -165,12 +158,9 @@
                         <p class="text-xs text-gray-500 mb-1">Fixed Price</p>
                         <p class="text-2xl font-bold text-white">$15</p>
                     </div>
-                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20Logo%20Design." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">
-                        Design My Logo
-                    </a>
+                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20Logo%20Design." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">Design My Logo</a>
                 </div>
 
-                <!-- Service 4 -->
                 <div class="glass-card rounded-2xl p-6 flex flex-col h-full relative group">
                     <div class="text-brandPurple mb-4 font-bold text-xl">04</div>
                     <h3 class="text-xl font-bold text-white mb-2">CV Design</h3>
@@ -179,12 +169,10 @@
                         <p class="text-xs text-gray-500 mb-1">Fixed Price</p>
                         <p class="text-2xl font-bold text-white">$10</p>
                     </div>
-                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20CV%20Design." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">
-                        Improve My CV
-                    </a>
+                    <a href="https://wa.me/249115213883?text=Hello,%20I'm%20interested%20in%20CV%20Design." target="_blank" class="w-full text-center bg-white/5 hover:bg-brandPurple text-white py-3 rounded-lg text-sm font-bold transition-colors">Improve My CV</a>
                 </div>
             </div>
-            
+
             <div class="mt-12 text-center">
                 <a href="https://wa.me/249115213883" target="_blank" class="text-brandPurple hover:text-white text-sm font-bold transition-colors border-b border-brandPurple pb-1">
                     Have a custom request? Message us directly →
@@ -193,25 +181,23 @@
         </div>
     </section>
 
-    <!-- 3. Portfolio Section -->
+    <!-- Portfolio -->
     <section id="portfolio" class="py-24 px-4 border-t border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <p class="text-xs text-brandPurple font-bold tracking-[0.2em] uppercase mb-3">Our Work</p>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-8">Selected Projects</h2>
-                
-                <!-- أزرار التصفية (الفلتر) -->
+
                 <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
-                    <button onclick="filterPortfolio('all')" class="filter-btn bg-brandPurple text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">ALL WORK</button>
-                    <button onclick="filterPortfolio('logos')" class="filter-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">LOGOS</button>
-                    <button onclick="filterPortfolio('anime')" class="filter-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">AI ANIME</button>
-                    <button onclick="filterPortfolio('cv')" class="filter-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">CV DESIGN</button>
+                    <button onclick="filterPortfolio('all', this)" class="filter-btn bg-brandPurple text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">ALL WORK</button>
+                    <button onclick="filterPortfolio('logos', this)" class="filter-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">LOGOS</button>
+                    <button onclick="filterPortfolio('anime', this)" class="filter-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">AI ANIME</button>
+                    <button onclick="filterPortfolio('cv', this)" class="filter-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs font-bold transition-colors">CV DESIGN</button>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                
-                <!-- Logo -->
+
                 <div class="portfolio-item glass-card rounded-xl overflow-hidden group cursor-pointer" data-category="logos">
                     <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303] flex items-center justify-center p-8">
                         <img src="logo1.png" alt="Merchant ALSD Logo" loading="lazy" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
@@ -223,10 +209,8 @@
                     </div>
                 </div>
 
-                <!-- Anime -->
                 <div class="portfolio-item glass-card rounded-xl overflow-hidden group cursor-pointer" data-category="anime">
-                    <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303]">
-                        <!-- استخدمنا preload="none" لتقليل الحمل على الصفحة -->
+                    <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303] overflow-hidden">
                         <video loop muted playsinline controls preload="none" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <source src="anime.mp4" type="video/mp4">
                         </video>
@@ -238,9 +222,8 @@
                     </div>
                 </div>
 
-                <!-- CV 1 -->
                 <div class="portfolio-item glass-card rounded-xl overflow-hidden group cursor-pointer" data-category="cv">
-                    <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303]">
+                    <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303] overflow-hidden">
                         <img src="cv1.jpg" alt="ATS Resume Formatting" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
                     </div>
                     <div class="p-5 border-t border-white/5">
@@ -250,9 +233,8 @@
                     </div>
                 </div>
 
-                <!-- CV 2 -->
                 <div class="portfolio-item glass-card rounded-xl overflow-hidden group cursor-pointer" data-category="cv">
-                    <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303]">
+                    <div class="relative aspect-[4/3] sm:aspect-video bg-[#030303] overflow-hidden">
                         <img src="cv2.jpg" alt="Engineering Resume" loading="lazy" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
                     </div>
                     <div class="p-5 border-t border-white/5">
@@ -263,7 +245,7 @@
                 </div>
 
             </div>
-            
+
             <div class="mt-12 text-center">
                 <a href="https://wa.me/249115213883" target="_blank" class="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-bold text-sm transition-colors inline-block">
                     Want similar results? Contact Us
@@ -272,35 +254,31 @@
         </div>
     </section>
 
-    <!-- 5. Process Section -->
+    <!-- Process -->
     <section id="process" class="bg-[#08080a] py-24 px-4 border-y border-white/5">
         <div class="max-w-7xl mx-auto text-center">
             <p class="text-xs text-brandPurple font-bold tracking-[0.2em] uppercase mb-3">HOW WE WORK</p>
             <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">A Simple, Transparent Process.</h2>
             <p class="text-gray-400 text-sm mb-16">From your first message to the final delivery.</p>
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-                <!-- خط التوصيل (يظهر في الشاشات الكبيرة فقط) -->
                 <div class="hidden lg:block absolute top-1/4 left-[10%] right-[10%] h-[1px] bg-white/10 z-0"></div>
-                
+
                 <div class="relative z-10 glass-card p-6 rounded-xl text-left h-full">
                     <div class="text-brandPurple font-extrabold text-3xl mb-4">01</div>
                     <h3 class="font-bold text-white mb-2 text-lg">Tell Us Your Idea</h3>
                     <p class="text-gray-400 text-xs leading-relaxed">Share your project, goals, and expectations with us.</p>
                 </div>
-                
                 <div class="relative z-10 glass-card p-6 rounded-xl text-left h-full">
                     <div class="text-brandPurple font-extrabold text-3xl mb-4">02</div>
                     <h3 class="font-bold text-white mb-2 text-lg">Plan & Confirm</h3>
                     <p class="text-gray-400 text-xs leading-relaxed">We agree on the scope, price, and delivery timeline before work begins.</p>
                 </div>
-
                 <div class="relative z-10 glass-card p-6 rounded-xl text-left h-full">
                     <div class="text-brandPurple font-extrabold text-3xl mb-4">03</div>
                     <h3 class="font-bold text-white mb-2 text-lg">Design & Create</h3>
                     <p class="text-gray-400 text-xs leading-relaxed">Your project takes shape through a focused and collaborative process.</p>
                 </div>
-
                 <div class="relative z-10 glass-card p-6 rounded-xl text-left h-full">
                     <div class="text-brandPurple font-extrabold text-3xl mb-4">04</div>
                     <h3 class="font-bold text-white mb-2 text-lg">Review & Deliver</h3>
@@ -310,7 +288,7 @@
         </div>
     </section>
 
-    <!-- 4. Reviews Section -->
+    <!-- Reviews -->
     <section id="reviews" class="py-24 px-4 border-b border-white/5 relative overflow-hidden">
         <div class="purple-glow bottom-0 right-0 opacity-50"></div>
         <div class="max-w-7xl mx-auto relative z-10">
@@ -319,15 +297,12 @@
                 <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Real Feedback. Real Appreciation.</h2>
                 <p class="text-gray-400 text-sm max-w-2xl mx-auto">Every project is an opportunity to create something meaningful. See what clients have shared about their experience working with Nexora Studio.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                
-                <!-- Review 1 -->
+
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★★</div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">4.8</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">4.8</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"I was happy with the experience of working with you."</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Roa Mohamed Essam</p>
@@ -335,12 +310,9 @@
                     </div>
                 </div>
 
-                <!-- Review 2 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★<span class="text-gray-600">★</span></div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">4.5</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">4.5</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"Your work is excellent, and I really appreciate your effort."</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Amir Mohamed</p>
@@ -348,12 +320,9 @@
                     </div>
                 </div>
 
-                <!-- Review 3 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★★</div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">5.0</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">5.0</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"You're a legend!"</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Bashir Adel</p>
@@ -361,12 +330,9 @@
                     </div>
                 </div>
 
-                <!-- Review 4 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★★</div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">4.9</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">4.9</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"Excellent work. I'm really satisfied with the result."</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Omer Mohamed</p>
@@ -374,12 +340,9 @@
                     </div>
                 </div>
 
-                <!-- Review 5 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★★</div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">4.7</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">4.7</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"Great work and a very positive experience."</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Shabeen Mohamed</p>
@@ -387,12 +350,9 @@
                     </div>
                 </div>
 
-                <!-- Review 6 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★★</div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">5.0</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">5.0</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"Your work fills me with enthusiasm!"</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Amin Nur Eldin</p>
@@ -400,12 +360,9 @@
                     </div>
                 </div>
 
-                <!-- Review 7 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★★</div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">4.9</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">4.9</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"I'm very pleased with your work. Thank you for the effort."</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Rayan Essam</p>
@@ -413,12 +370,9 @@
                     </div>
                 </div>
 
-                <!-- Review 8 -->
                 <div class="glass-card p-6 rounded-xl flex flex-col h-full border border-white/5">
                     <div class="flex text-yellow-500 text-sm mb-3 gap-1">★★★★<span class="text-yellow-500">★</span></div>
-                    <div class="flex items-baseline gap-2 mb-3">
-                        <h4 class="font-bold text-xl text-white">4.6</h4><span class="text-gray-500 text-xs">/ 5.0</span>
-                    </div>
+                    <div class="flex items-baseline gap-2 mb-3"><h4 class="font-bold text-xl text-white">4.6</h4><span class="text-gray-500 text-xs">/ 5.0</span></div>
                     <p class="text-gray-300 text-sm italic mb-6 flex-grow">"Excellent work. I really appreciate your creativity."</p>
                     <div>
                         <p class="text-white text-sm font-semibold">Moataz Ali</p>
@@ -426,18 +380,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <p class="text-center text-[10px] text-gray-600 mt-8">* Ratings are estimated representations based on overall client satisfaction and text feedback.</p>
         </div>
     </section>
 
-    <!-- 8. FAQ Section -->
+    <!-- FAQ -->
     <section id="faq" class="bg-[#08080a] py-24 px-4 border-b border-white/5">
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Frequently Asked Questions</h2>
             </div>
-            
+
             <div class="space-y-3">
                 <details class="glass-card rounded-xl group p-6 cursor-pointer">
                     <summary class="flex items-center justify-between font-bold text-white group-open:text-brandPurple transition-colors outline-none text-sm md:text-base">
@@ -446,7 +400,7 @@
                     </summary>
                     <p class="text-gray-400 text-sm mt-4 leading-relaxed border-t border-white/10 pt-4">Nexora Studio offers website design, AI anime video production, logo design, and professional CV design.</p>
                 </details>
-                
+
                 <details class="glass-card rounded-xl group p-6 cursor-pointer">
                     <summary class="flex items-center justify-between font-bold text-white group-open:text-brandPurple transition-colors outline-none text-sm md:text-base">
                         How do I get started?
@@ -490,12 +444,12 @@
         </div>
     </section>
 
-    <!-- 7. Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="py-24 px-4 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Ready to work together?</h2>
             <p class="text-gray-400 mb-12 text-sm md:text-base">Reach out directly via WhatsApp or Email. Let's discuss your requirements.</p>
-            
+
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="https://wa.me/249115213883?text=Hello%20Nexora%20Studio!%20I'm%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="bg-brandPurple hover:bg-brandPurpleHover text-white px-8 py-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-3 transition-transform hover:-translate-y-1">
                     Start Your Project on WhatsApp
@@ -510,38 +464,34 @@
     <!-- Footer -->
     <footer class="py-12 text-center bg-[#050505] border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <h3 class="font-bold text-xl tracking-widest text-white mb-2">
-                NEXORA <span class="text-brandPurple text-xs uppercase tracking-widest">Studio</span>
+            <h3 class="font-extrabold text-2xl md:text-3xl tracking-[0.12em] text-white mb-2">
+                NEXORA <span class="text-brandPurple text-sm md:text-base uppercase tracking-[0.2em]">Studio</span>
             </h3>
             <p class="text-gray-500 text-xs mb-6">Ideas Into Digital Experiences.</p>
             <p class="text-gray-700 text-[10px]">© 2026 Nexora Studio. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button (Mobile & Desktop) -->
+    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/249115213883" target="_blank" class="float-wa bg-[#25D366] text-white p-3 rounded-full shadow-[0_4px_15px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform flex items-center justify-center" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" class="w-7 h-7 fill-current"><path d="M12.031 21c-1.637 0-3.238-.426-4.654-1.233l-.334-.191-3.46.907.923-3.375-.21-.334A9.919 9.919 0 0 1 3 12.031c0-5.503 4.48-9.983 9.986-9.983 2.668 0 5.176 1.04 7.062 2.928A9.923 9.923 0 0 1 23 12.031c0 5.503-4.48 9.983-9.986 9.983m0-21C5.394 0 0 5.394 0 12.031c0 2.128.555 4.204 1.611 6.033L.108 23.892l5.964-1.564A11.968 11.968 0 0 0 12.031 24c6.627 0 12.019-5.392 12.019-12.019C24 5.385 18.627 0 12.031 0m6.568 16.586c-.274-.757-1.614-1.391-2.222-1.533-.608-.142-1.05-.213-1.492.45-.442.663-1.688 2.059-2.068 2.482-.38.423-.76.474-1.423.142-.663-.332-2.146-.79-4.088-2.525-1.512-1.35-2.531-2.834-3.539-.303-.523-.032-.806.299-1.137.297-.297.663-.77.994-1.156.332-.385.442-.644.663-1.074.221-.43.111-.806-.055-1.137-.166-.331-1.492-3.6-2.044-4.928-.538-1.293-1.085-1.118-1.492-1.137-.38-.019-.816-.019-1.258-.019-.442 0-1.161.166-1.769.833-.608.663-2.322 2.271-2.322 5.535 0 3.264 2.377 6.417 2.709 6.861.332.445 4.678 7.14 11.328 10.013 1.583.684 2.818 1.093 3.784 1.399 1.589.505 3.037.433 4.182.262 1.28-.19 3.925-1.603 4.478-3.153.552-1.55.552-2.881.386-3.161-.166-.28-.608-.445-1.271-.777"/></svg>
     </a>
 
-    <!-- سكربت فلترة معرض الأعمال -->
     <script>
-        function filterPortfolio(category) {
+        function filterPortfolio(category, btn) {
             const items = document.querySelectorAll('.portfolio-item');
             const buttons = document.querySelectorAll('.filter-btn');
-            
-            // إعادة تعيين ألوان الأزرار
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-brandPurple');
-                btn.classList.add('bg-white/10', 'hover:bg-white/20');
+
+            buttons.forEach(b => {
+                b.classList.remove('bg-brandPurple');
+                b.classList.add('bg-white/10', 'hover:bg-white/20');
             });
-            
-            // تلوين الزر النشط
-            event.target.classList.remove('bg-white/10', 'hover:bg-white/20');
-            event.target.classList.add('bg-brandPurple');
-            
-            // إظهار وإخفاء الأعمال
+
+            btn.classList.remove('bg-white/10', 'hover:bg-white/20');
+            btn.classList.add('bg-brandPurple');
+
             items.forEach(item => {
-                if(category === 'all' || item.getAttribute('data-category') === category) {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
                     item.style.animation = 'fadeIn 0.5s ease-in-out';
                 } else {
@@ -549,6 +499,13 @@
                 }
             });
         }
+
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            heroVideo.muted = true;
+            const p = heroVideo.play();
+            if (p !== undefined) p.catch(() => {});
+        }
     </script>
 </body>
-</html>
+    </html>
